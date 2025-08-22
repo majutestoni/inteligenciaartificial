@@ -4,16 +4,18 @@ class Agente2:
     n = 0
     i = 0
     j = 0
+    obstaculo = -1 
     
-    def __init__(self, n,i,j):
+    def __init__(self, n,i,j,obstaculo):
         self.matriz =[[0 for _ in range(n)] for _ in range(n)]
         self.n = n
         self.i = i
         self.j = j
+        self.obstaculo = obstaculo
         
     def addObstaculo(self, x, y):
         if 0 <= x < self.n and 0 <= y < self.n:
-            self.matriz[x][y] = -1
+            self.matriz[x][y] = self.obstaculo
             
     def vaiAtras(self):
         self.adicionaMovimento()
@@ -56,7 +58,7 @@ class Agente2:
     
     def imprimeMatriz(self):
         for linha in self.matriz:
-            print(linha)
+            print(" ".join(f"{valor:2}" for valor in linha))
             
     def inicia(self):
         self.adicionaMovimento()
