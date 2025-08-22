@@ -1,15 +1,19 @@
 
 #Aqui precisa usar a busca em largura BFS
+Ponto = tuple[int, int]
 class Agente3:
     matriz = []
-    movimentos = []
-    parentesco = {}  
     n = 0
     i = 0
     j = 0
     obstaculo = -1
-    inicio = (0,0)
-    destino = (0,0)
+    
+    inicio:Ponto = (0,0)
+    destino:Ponto = (0,0)
+    
+    parentesco: dict[Ponto,Ponto] = {}
+    distancia: dict[Ponto,int] = {}
+    fila: list[Ponto] = []
     
     def __init__(self,n,obstaculo,inicio,destino):
         self.matriz =[[0 for _ in range(n)] for _ in range(n)]
@@ -18,103 +22,83 @@ class Agente3:
         self.inicio = inicio
         self.destino = destino
         self.obstaculo = obstaculo
-        
+    
     def addObstaculo(self, x, y):
         if 0 <= x < self.n and 0 <= y < self.n:
             self.matriz[x][y] = self.obstaculo
-            
-    def vaiAtras(self):
-        self.adicionaMovimento()
-        self.j -= 1
-        self.adicionaParentesco()
-            
-    def vaiFrente(self):
-        self.adicionaMovimento()
-        self.j += 1
-        self.adicionaParentesco()
         
-    def vaiDireita(self):
-        self.adicionaMovimento()
-        self.i += 1
-        self.adicionaParentesco()
-          
-    def vaiEsquerda(self):
-        self.adicionaMovimento()
-        self.i -= 1
-        self.adicionaParentesco()
-        
-    def adicionaMovimento(self):
-        self.movimentos.append((self.i, self.j))
-    
-    def voltar(self):
-        self.matriz[self.i][self.j] += 1
-        if self.movimentos:
-            self.i, self.j = self.movimentos.pop()
-            
-    def podeVoltar(self):
-        return len(self.movimentos) > 0
-    
-    def podeFrente(self):
-        return self.j < self.n - 1 and self.matriz[self.i][self.j + 1] == 0
-    
-    def podeAtras(self):
-        return self.j > 0 and self.matriz[self.i][self.j - 1] == 0
-    
-    def podeDireita(self):
-        return self.i < self.n - 1 and self.matriz[self.i + 1][self.j] == 0
-    
-    def podeEsquerda(self):
-        return self.i > 0 and self.matriz[self.i - 1][self.j] == 0
-    
     def imprimeMatriz(self):
         for linha in self.matriz:
             print(" ".join(f"{valor:2}" for valor in linha))
             
-    def isDestino(self):
-        return (self.i, self.j) == self.destino
-    
-    def adicionaParentesco(self):
-        self.parentesco[(self.i, self.j)] = self.movimentos[-1] if self.movimentos else None
+    def getCaminho(self,p):
+        v = p
+        c = []
         
-    def getCaminho(self):
-        caminho = []
-        atual = self.destino
-        distancia = 0
+        while v is not None:
+            c.append(v)
+            if v in self.parentesco:
+                v = self.parentesco[v]
+            else:
+                v = None
+                
+        c.reverse()
         
-        while atual != self.inicio:
-            distancia +=1
-            caminho.append(atual)
-            atual = self.parentesco.get(atual)
+        print(c)
             
-        caminho.reverse()
+    def imprimeDestino(self):
+        if self.destino not in self.distancia:
+            print("Não foi possível chegar no destino")
+            return
         
-        return (caminho,distancia)
+        distancia = self.distancia.get(self.destino)
+        
+        print(f"Distancia ao destino {distancia}")
+        self.getCaminho(self.destino)
+            
+    def pegaAdj(self,ponto) -> list[Ponto]:
+        adj = []
+        i,j = ponto
+        
+        if j < self.n -1:
+            adj.append((i,j+1)) #direita
+        if j > 0:
+            adj.append((i,j-1)) #esquerda
+        if i < self.n-1:
+            adj.append((i+1,j)) #baixo
+        if i > 0:
+            adj.append((i-1,j)) #cima
+        
+        return adj
             
     def inicia(self):
-        self.adicionaMovimento()
-        self.adicionaParentesco()
+        self.fila.append(self.inicio)
+        self.distancia[self.inicio] = 0
+        i,j = self.inicio
+        self.matriz[i][j] = 1
         
-        while len(self.movimentos) > 0:
-            if self.matriz[self.i][self.j] == 0:
-                self.matriz[self.i][self.j] = 1
+        while len(self.fila) > 0:
             
-            if self.podeFrente():
-                self.vaiFrente()
-            elif self.podeDireita():
-                self.vaiDireita()
-            elif self.podeEsquerda():
-                self.vaiEsquerda()
-            elif self.podeAtras():
-                self.vaiAtras()
-            elif self.podeVoltar():
-                self.voltar()
+            v = self.fila.pop(0)
+            i,j = v
+            
+            for p in self.pegaAdj(v):
+                i,j = p
                 
-            if self.isDestino():
-                print("Destino alcançado!")
-                print(self.getCaminho())
-                break
-                
+                if self.matriz[i][j] == 0:
+                    self.fila.append(p)
+                    self.matriz[i][j] = 1
+                    self.parentesco[p] = v
+                    self.distancia[p] = self.distancia[v] + 1
+                    
+            self.matriz[i][j] = 2
+            
         self.imprimeMatriz()
+        self.imprimeDestino()
+     
+                
+  
+        
         
 
 
