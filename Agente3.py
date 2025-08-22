@@ -1,18 +1,22 @@
 
-# Aqui foi usada a busca em profundiade DFS
-class Agente2:
+#Aqui precisa usar a busca em largura BFS
+class Agente3:
     matriz = []
-    movimentos = []   
+    movimentos = []
+    parentesco = {}  
     n = 0
     i = 0
     j = 0
-    obstaculo = -1 
+    obstaculo = -1
+    inicio = (0,0)
+    destino = (0,0)
     
-    def __init__(self, n,i,j,obstaculo):
+    def __init__(self,n,obstaculo,inicio,destino):
         self.matriz =[[0 for _ in range(n)] for _ in range(n)]
         self.n = n
-        self.i = i
-        self.j = j
+        self.i,self.j = inicio
+        self.inicio = inicio
+        self.destino = destino
         self.obstaculo = obstaculo
         
     def addObstaculo(self, x, y):
@@ -22,18 +26,22 @@ class Agente2:
     def vaiAtras(self):
         self.adicionaMovimento()
         self.j -= 1
+        self.adicionaParentesco()
             
     def vaiFrente(self):
         self.adicionaMovimento()
         self.j += 1
+        self.adicionaParentesco()
         
     def vaiDireita(self):
         self.adicionaMovimento()
         self.i += 1
-
+        self.adicionaParentesco()
+          
     def vaiEsquerda(self):
         self.adicionaMovimento()
         self.i -= 1
+        self.adicionaParentesco()
         
     def adicionaMovimento(self):
         self.movimentos.append((self.i, self.j))
@@ -62,8 +70,29 @@ class Agente2:
         for linha in self.matriz:
             print(" ".join(f"{valor:2}" for valor in linha))
             
+    def isDestino(self):
+        return (self.i, self.j) == self.destino
+    
+    def adicionaParentesco(self):
+        self.parentesco[(self.i, self.j)] = self.movimentos[-1] if self.movimentos else None
+        
+    def getCaminho(self):
+        caminho = []
+        atual = self.destino
+        distancia = 0
+        
+        while atual != self.inicio:
+            distancia +=1
+            caminho.append(atual)
+            atual = self.parentesco.get(atual)
+            
+        caminho.reverse()
+        
+        return (caminho,distancia)
+            
     def inicia(self):
         self.adicionaMovimento()
+        self.adicionaParentesco()
         
         while len(self.movimentos) > 0:
             if self.matriz[self.i][self.j] == 0:
@@ -79,6 +108,11 @@ class Agente2:
                 self.vaiAtras()
             elif self.podeVoltar():
                 self.voltar()
+                
+            if self.isDestino():
+                print("Destino alcançado!")
+                print(self.getCaminho())
+                break
                 
         self.imprimeMatriz()
         
