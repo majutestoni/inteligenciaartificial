@@ -1,11 +1,27 @@
 from Agente2 import Agente2
 
 
-agente = Agente2(5, 0, 0)
+agente = Agente2(10, 0, 0)
 
 agente.addObstaculo(0, 4)
 agente.addObstaculo(1, 0)
 agente.addObstaculo(1, 3)
 agente.addObstaculo(2, 2)
-
+agente.addObstaculo(3, 2)
+agente.addObstaculo(3, 5)
+agente.addObstaculo(4, 1)
+agente.addObstaculo(4, 6)
+agente.addObstaculo(5, 3)
+agente.addObstaculo(5, 5)
+agente.addObstaculo(5, 6)
+agente.addObstaculo(5, 7)
+agente.addObstaculo(5, 8)
+agente.addObstaculo(6, 5)
+agente.addObstaculo(6, 8)
+agente.addObstaculo(7, 5)
+agente.addObstaculo(7, 8)
+agente.addObstaculo(8, 5)
+agente.addObstaculo(8, 7)
+agente.addObstaculo(8, 8)
+agente.addObstaculo(9, 5)
 agente.inicia()
