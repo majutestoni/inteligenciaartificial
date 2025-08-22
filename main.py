@@ -1,5 +1,5 @@
 from Agente2 import Agente2
-
+from Agente1 import Agente1
 
 agente = Agente2(10, 0, 0, -1)
 
@@ -26,3 +26,7 @@ agente.addObstaculo(8, 8)
 agente.addObstaculo(9, 5)
 
 agente.inicia()
+
+agente1 = Agente1(10, 2, 3)
+
+agente1.inicia()
