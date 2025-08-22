@@ -76,8 +76,9 @@ class Agente3:
         self.distancia[self.inicio] = 0
         i,j = self.inicio
         self.matriz[i][j] = 1
+        achou = False
         
-        while len(self.fila) > 0:
+        while len(self.fila) > 0 and not achou:
             
             v = self.fila.pop(0)
             i,j = v
@@ -90,6 +91,10 @@ class Agente3:
                     self.matriz[i][j] = 1
                     self.parentesco[p] = v
                     self.distancia[p] = self.distancia[v] + 1
+                    
+                    if p == self.destino:
+                        achou = True
+                        break
                     
             self.matriz[i][j] = 2
             

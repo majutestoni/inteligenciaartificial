@@ -32,7 +32,7 @@ agente1 = Agente1(10, 2, 3)
 
 # agente2.inicia()
 
-agente3 = Agente3(10, -1, (0,0), (7,7))
+agente3 = Agente3(10, -1, (9,6), (7,7))
 
 agente3.addObstaculo(1,2)
 
