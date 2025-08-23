@@ -1,0 +1,31 @@
+from Agente4 import Agente4
+
+agente4 = Agente4(11, (0,5), (10,5))
+
+agente4.addAreia(3, 2)
+agente4.addAreia(3, 3)
+agente4.addAreia(4, 2)
+agente4.addAreia(5, 2)
+agente4.addAreia(5, 3)
+agente4.addAreia(6, 3)
+agente4.addAreia(7, 4)
+agente4.addAreia(6, 6)
+agente4.addAreia(6, 7)  
+agente4.addAreia(3, 7)
+agente4.addAreia(4, 7)
+agente4.addAreia(5, 7)
+agente4.addAreia(5, 8)
+
+agente4.addRocha(4, 4)
+agente4.addRocha(5, 4)
+agente4.addRocha(6, 4)
+agente4.addRocha(2, 5)
+agente4.addRocha(3, 5)
+agente4.addRocha(4, 5)
+agente4.addRocha(5, 5)
+agente4.addRocha(7, 5)
+agente4.addRocha(3, 6)
+agente4.addRocha(4, 6)
+agente4.addRocha(5, 6)
+
+agente4.inicia()
