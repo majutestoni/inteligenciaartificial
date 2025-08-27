@@ -86,13 +86,13 @@ class Agente4:
         for (i,j) in caminho:
             matriz_resp[i][j] = "X"
         for linha in matriz_resp:
-            print(" ".join(linha))
-    
+            print(" ".join(f"{x:2}" for x in linha))
+
     def inicia(self):
         print("======= Matriz inicial =======")
         for linha in self.matriz:
-            print(" ".join(str(x) for x in linha))
-        
+            print(" ".join(f"{x:2}" for x in linha))
+
         menor_custo = self.dijkstra()
         caminho = self.reconstruir_caminho()
         
