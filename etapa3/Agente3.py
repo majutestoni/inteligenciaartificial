@@ -1,7 +1,8 @@
 
 #Aqui precisa usar a busca em largura BFS
 Ponto = tuple[int, int]
-class Agente3:
+
+class Agente:
     matriz = []
     n = 0
     i = 0

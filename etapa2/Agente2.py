@@ -1,6 +1,6 @@
 
 # Aqui foi usada a busca em profundiade DFS
-class Agente2:
+class Agente:
     matriz = []
     movimentos = []   
     n = 0

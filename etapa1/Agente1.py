@@ -1,4 +1,4 @@
-class Agente1:
+class Agente:
     matriz = []
     direita = False
     cima  = False
