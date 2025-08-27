@@ -8,11 +8,10 @@ class Agente:
     j = 0
     obstaculo = -1 
     
-    def __init__(self, n,i,j,obstaculo):
+    def __init__(self, n,inicio,obstaculo):
         self.matriz =[[0 for _ in range(n)] for _ in range(n)]
         self.n = n
-        self.i = i
-        self.j = j
+        self.i, self.j = inicio
         self.obstaculo = obstaculo
         
     def addObstaculo(self, x, y):

@@ -1,6 +1,6 @@
 from Agente2 import Agente
 
-agente2 = Agente(10, 0, 0, -1)
+agente2 = Agente(10, (0, 0), -1)
 
 agente2.addObstaculo(0, 4)
 agente2.addObstaculo(1, 0)
