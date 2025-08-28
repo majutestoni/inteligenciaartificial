@@ -43,19 +43,26 @@ class Agente:
             else:
                 v = None
                 
-        c.reverse()
-        
-        print(c)
-            
+        return c
+    
+    def imprimeMatrizComCaminho(self, caminho):
+        matriz_resp = [[str(self.matriz[i][j]) for j in range(self.n)] for i in range(self.n)]
+        for (i,j) in caminho:
+            matriz_resp[i][j] = "X"
+        for linha in matriz_resp:
+            print(" ".join(f"{x:2}" for x in linha))
+
     def imprimeDestino(self):
         if self.destino not in self.distancia:
             print("Não foi possível chegar no destino")
             return
         
         distancia = self.distancia.get(self.destino)
-        
-        print(f"Distancia ao destino {distancia}")
-        self.getCaminho(self.destino)
+
+        print("======= Caminho encontrado ======= ")
+        print(f"Menor custo de {self.inicio} até {self.destino}: {distancia}")
+        caminho = self.getCaminho(self.destino)
+        self.imprimeMatrizComCaminho(caminho)
             
     def pegaAdj(self,ponto) -> list[Ponto]:
         adj = []
@@ -99,7 +106,6 @@ class Agente:
                     
             self.matriz[i][j] = 2
             
-        self.imprimeMatriz()
         self.imprimeDestino()
      
                 

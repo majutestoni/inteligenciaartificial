@@ -1,7 +1,7 @@
 
 from Agente3 import Agente
 
-agente3 = Agente(10, -1, (9,6), (7,7))
+agente3 = Agente(10, -1, (0,0), (7,7))
 
 agente3.addObstaculo(1,2)
 
