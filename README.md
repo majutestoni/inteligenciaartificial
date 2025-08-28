@@ -9,7 +9,6 @@ Repositório da Disciplina de Inteligência Articial da FURB 2025/2
 ### Professor
 Maiko Rafael Spiess (Doutorado em Política Científica e Tecnológica)
 
-
 ## Etapas
 
 ### Etapa 1
@@ -20,6 +19,25 @@ Maiko Rafael Spiess (Doutorado em Política Científica e Tecnológica)
 5. O fim deve ser ao chegar no que é a 1° posição da matriz
 
 ### Etapa 2
+Na etapa 2 foi utilizado em alusão ao algoritmo de DFS (Busca em profundidade)
+
+Aqui temos uma lista de movimentos, onde em cada rodada é adicionado o movimento do agente;
+
+#### As posições possuem 3 estados:
+- 0 - não visitadass
+- 1 - encontrado
+- 2 - totalmente visitado 
+
+#### A cada rodada o seguinte ocorre:
+
+1. A posição atual do agente é marcada como encontrada(1)
+2. A posição atual é adicionada a lista de movimentos
+3. É verificada a direção que o agente pode ir
+4. O agente visita a posição
+5. Quando não puder ir para nenhuma direção o agente volta
+6. Ao voltar a célula é marcada como totalmente visitada
+7. O movimento é retirado da lista de movimentos
+8. Quando a lista de movimentos estiver vazia o agente para
 
 ### Etapa 3
 
