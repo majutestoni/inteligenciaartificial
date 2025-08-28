@@ -30,26 +30,24 @@ class Agente:
             self.matriz[x][y] = self.rocha
 
     def ordenaAdj(self, adjs):
-        i_destino,j_destino = self.destino
+        i_destino, j_destino = self.destino
         modificada = []
 
-        for i,adj in enumerate(adjs):
-            i,j,v,d = adj
+        for i, j, v, d in adjs:
+            # Prioridade baseada na direção em relação ao destino
+            if d == 'b' and i_destino > self.i:
+                v += 1
+            elif d == 'c' and i_destino < self.i:
+                v += 1
+            elif d == 'd' and j_destino > self.j:
+                v += 1
+            elif d == 'e' and j_destino < self.j:
+                v += 1
 
-            if i_destino > self.i and d == 'b':
-                v += 1
-            if i_destino < self.i and d == 'c':
-                v += 1
-            if j_destino > self.j and d == 'd':
-                v += 1
-            if j_destino < self.j and d == 'e':
-                v += 1
+            modificada.append((i, j, v, d))
 
-            modificada.append((i,j,v,d))
-        
-        modificada = sorted(modificada,key= lambda adj: adj[2],reverse=True)
-
-        return  [(i,j) for i, j,v,d in modificada]
+        modificada.sort(key=lambda adj: adj[2], reverse=True)
+        return [(i, j) for i, j, v, d in modificada]
            
     def pegaAdj(self,ponto) -> list[Ponto]:
         adjs = []
