@@ -1,6 +1,6 @@
 from Agente4 import Agente4
 
-agente4 = Agente4(11, (0,5), (10,5))
+agente4 = Agente4(10, (0,5), (9,5))
 
 agente4.addAreia(3, 2)
 agente4.addAreia(3, 3)
