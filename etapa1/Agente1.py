@@ -20,10 +20,10 @@ class Agente:
     def vaiEsquerda(self):
         self.j -= 1
 
-    def vaiBaixo(self):
+    def vaiCima(self):
         self.i -= 1
 
-    def vaiCima(self):
+    def vaiBaixo(self):
         self.i+=1
 
     def podeDireita(self):
@@ -50,13 +50,13 @@ class Agente:
                 self.vaiDireita()
             elif self.podeBaixo():
                 self.direita = True
-                self.vaiCima()
+                self.vaiBaixo()
             elif self.podeEsquerda():
                 self.baixo = True
                 self.vaiEsquerda()
             elif self.podeCima():
                 self.esquerda = True
-                self.vaiBaixo()
+                self.vaiCima()
             else:
                 self.cima = True
 
