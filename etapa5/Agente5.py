@@ -29,21 +29,25 @@ class Agente:
         if 0 <= x < self.n and 0 <= y < self.n:
             self.matriz[x][y] = self.rocha
 
-    def ordenaAdj(self, adjs):
+    def pegaDirecoes(self):
         i_destino, j_destino = self.destino
+
+        direcoes = {
+            'b': i_destino > self.i,
+            'c': i_destino < self.i,
+            'd': j_destino > self.j,
+            'e': j_destino < self.j
+        }
+
+        return direcoes
+
+    def ordenaAdj(self, adjs):
         modificada = []
+        direcoes = self.pegaDirecoes()
 
         for i, j, v, d in adjs:
-            # Prioridade baseada na direção em relação ao destino
-            if d == 'b' and i_destino > self.i:
+            if direcoes.get(d, False):
                 v += 1
-            elif d == 'c' and i_destino < self.i:
-                v += 1
-            elif d == 'd' and j_destino > self.j:
-                v += 1
-            elif d == 'e' and j_destino < self.j:
-                v += 1
-
             modificada.append((i, j, v, d))
 
         modificada.sort(key=lambda adj: adj[2], reverse=True)
