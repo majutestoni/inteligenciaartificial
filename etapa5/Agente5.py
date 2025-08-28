@@ -27,20 +27,44 @@ class Agente:
             
     def addRocha(self, x, y):
         if 0 <= x < self.n and 0 <= y < self.n:
-            self.matriz[x][y] = self.rocha 
-    
+            self.matriz[x][y] = self.rocha
+
+    def ordenaAdj(self, adjs):
+        i_destino,j_destino = self.destino
+        modificada = []
+
+        for i,adj in enumerate(adjs):
+            i,j,v,d = adj
+
+            if i_destino > self.i and d == 'b':
+                v += 1
+            if i_destino < self.i and d == 'c':
+                v += 1
+            if j_destino > self.j and d == 'd':
+                v += 1
+            if j_destino < self.j and d == 'e':
+                v += 1
+
+            modificada.append((i,j,v,d))
+        
+        modificada = sorted(modificada,key= lambda adj: adj[2],reverse=True)
+
+        return  [(i,j) for i, j,v,d in modificada]
+           
     def pegaAdj(self,ponto) -> list[Ponto]:
-        adj = []
+        adjs = []
         i,j = ponto
+
         if j < self.n -1:
-            adj.append((i,j+1)) # direita
+            adjs.append((i,j+1, 0,'d')) # direita
         if j > 0:
-            adj.append((i,j-1)) # esquerda
+            adjs.append((i,j-1, 0,'e')) # esquerda
         if i < self.n-1:
-            adj.append((i+1,j)) # baixo
+            adjs.append((i+1,j, 0,'b')) # baixo
         if i > 0:
-            adj.append((i-1,j)) # cima
-        return adj
+            adjs.append((i-1,j, 0,'c')) # cima
+        
+        return self.ordenaAdj(adjs)
     
     def imprimeMatrizComCaminho(self):
         matriz_resp = [[str(self.matriz[i][j]) for j in range(self.n)] for i in range(self.n)]
