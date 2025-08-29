@@ -24,7 +24,7 @@ Na etapa 2 foi utilizado em alusão ao algoritmo de DFS (Busca em profundidade)
 Aqui temos uma lista de movimentos, onde em cada rodada é adicionado o movimento do agente;
 
 #### As posições possuem 3 estados:
-- 0 - não visitadass
+- 0 - não visitadas
 - 1 - encontrado
 - 2 - totalmente visitado 
 
@@ -40,6 +40,32 @@ Aqui temos uma lista de movimentos, onde em cada rodada é adicionado o moviment
 8. Quando a lista de movimentos estiver vazia o agente para
 
 ### Etapa 3
+Na etapa 3 foi utilizado em alusão ao algoritmo de BFS (Busca em largura) 
+
+#### Aqui temos: 
+- lista de parentesco
+- lista de distancia
+- fila posicoes
+
+#### As posições possuem 3 estados:
+- 0 - não visitadas
+- 1 - encontrado
+- 2 - totalmente visitado 
+
+#### Antes de iniciar o loop:
+1. A posicao inicial é adicionada a fila de posições
+2. A posicao inicial é marcada como encontrada(1)
+3. A distancia da posicao inicial é marcada como 0
+
+#### A cada rodada do loop o seguinte ocorre:
+1. A posicao p é retirada de fila
+2. Para cara posicao a adjacente de p:
+    1. a é adicionada a fila de posicoes
+    2. a é marcada como encontrada
+    3. p é marcado como pai de a
+    4. a distancia de a é marcada como a distancia de p+1
+    5. se a for igual ao destino o loop para
+3. A posicao é marcada como totalmente visitada
 
 ### Etapa 4
 
@@ -47,7 +73,7 @@ Aqui temos uma lista de movimentos, onde em cada rodada é adicionado o moviment
  - normal = 1
  - arenoso = 2
  - rochoso = 3
- 1. Com base nisso, a matriz que foi herdada de todos os agente anteriores passou por uma mudança, . onde caso espaço passou a ter um valor (vulgo custo)
+ 1. Com base nisso, a matriz que foi herdada de todos os agente anteriores passou psor uma mudança, . onde caso espaço passou a ter um valor (vulgo custo)
  2. Próximo passo foi pensar em como o robo analisaria seu ambiente e definiria seu caminho, caso, ele teria de explorar seus vizinhos -> escolher o vertice de custo mais baixo -> repete o processo
  3. Assim, monta uma árvore de custo minimo
 
