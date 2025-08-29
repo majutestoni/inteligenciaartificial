@@ -77,4 +77,21 @@ Na etapa 3 foi utilizado em alusão ao algoritmo de BFS (Busca em largura)
  2. Próximo passo foi pensar em como o robo analisaria seu ambiente e definiria seu caminho, caso, ele teria de explorar seus vizinhos -> escolher o vertice de custo mais baixo -> repete o processo
  3. Assim, monta uma árvore de custo minimo
 
+### Etapa 5
 
+Aqui temos uma lista de caminho
+
+### Antes do loop:
+Valores das pocisões podem ser:
+ - normal = 1
+ - arenoso = 2
+ - rochoso = 3
+
+#### A cada rodada do loop o seguinte ocorre:
+1. A posicao p é adicionada ao caminho
+2. se p = destino para o loop
+3. marca o valor de p como p+1
+4. pega os valores adjacentes
+    1. Pega todos adjacentes
+    2. Ordena os adjacentes com base na direção do destino
+5. pega o adjcente com menor valor e seta como posicao p
