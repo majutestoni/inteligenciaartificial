@@ -22,6 +22,10 @@ Maiko Rafael Spiess (Doutorado em Política Científica e Tecnológica)
 4. Sempre que o agente encontra uma parede, ele muda a direção.  
 5. O processo termina quando o agente retorna à primeira posição da matriz.
 
+#### Resultado:
+
+![Resultado Agente 1](./images/agente1.png)
+
 ### Etapa 2
 Foi implementado um algoritmo inspirado em **Depth-First Search (DFS)**.  
 
@@ -38,7 +42,11 @@ Foi implementado um algoritmo inspirado em **Depth-First Search (DFS)**.
 5. Caso não haja movimentos possíveis, o agente **retrocede**.  
 6. Ao retroceder, a célula é marcada como **totalmente visitada (2)**.  
 7. O último movimento é removido da lista.  
-8. O processo termina quando a lista de movimentos está vazia.  
+8. O processo termina quando a lista de movimentos está vazia. 
+
+#### Resultado:
+
+![Resultado Agente 2](./images/agente2.png)
 
 ### Etapa 3
 Foi implementado um algoritmo inspirado em **Breadth-First Search (BFS)**.  
@@ -66,6 +74,10 @@ Foi implementado um algoritmo inspirado em **Breadth-First Search (BFS)**.
      5. Se `a` for o destino, o loop termina.  
    - `p` é marcada como **totalmente visitada (2)**.  
 
+#### Resultado:
+
+![Resultado Agente 3](./images/agente3.png)
+
 ### Etapa 4
 Foi considerado que o ambiente possui **tipos de terrenos com custos diferentes**:  
 - Normal = `1`  
@@ -77,6 +89,9 @@ Foi considerado que o ambiente possui **tipos de terrenos com custos diferentes*
 2. O robô analisa seus vizinhos e **escolhe o vértice de menor custo**.  
 3. O processo é repetido até a formação de uma **árvore de custo mínimo**.  
 
+#### Resultado:
+
+![Resultado Agente 4](./images/agente4.png)
 
 ### Etapa 5
 
@@ -97,3 +112,6 @@ Nesta etapa, o foco foi a **geração do caminho final**.
    - Eles são ordenados com base na direção do destino.  
 5. O vizinho de **menor valor** é escolhido como a nova posição `p`.  
 
+#### Resultado:
+
+![Resultado Agente 5](./images/agente5.png)
