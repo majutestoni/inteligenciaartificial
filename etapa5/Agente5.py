@@ -70,7 +70,7 @@ class Agente:
     
     def imprimeMatrizComCaminho(self):
         matriz_resp = [[str(self.matriz[i][j]) for j in range(self.n)] for i in range(self.n)]
-        print(f"Caminho encontrado em {len(self.caminho)} etapas")
+        print(f"Caminho encontrado em {len(self.caminho) -1} etapas")
         for (i,j) in self.caminho:
             matriz_resp[i][j] = "X"
         for linha in matriz_resp:
