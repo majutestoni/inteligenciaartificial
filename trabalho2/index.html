@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Códex de Titan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+DW+Pica&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'IM Fell DW Pica', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0d1; /* Cor de pergaminho */
+            color: #4b382d; /* Cor de tinta escura */
+            line-height: 1.6;
+        }
+
+        .banner-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #fcfcf0; /* Cor de papel */
+            border: 5px solid #d2b48c; /* Borda de madeira */
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3em;
+            color: #8b4513; /* Marrom escuro */
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            padding: 10px 15px;
+            color: #8b4513;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s, text-shadow 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: #a52a2a; /* Vermelho queimado */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .divider {
+            border: none;
+            height: 1px;
+            background-color: #d2b48c;
+            margin: 20px 0;
+        }
+
+        .content {
+            font-size: 1.1em;
+        }
+
+        .content h2 {
+            font-family: 'Cinzel', serif;
+            color: #8b4513;
+            border-bottom: 2px solid #8b4513;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .glossary-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .glossary-list li {
+            margin-bottom: 15px;
+            border-left: 3px solid #8b4513;
+            padding-left: 15px;
+        }
+
+        .glossary-list li strong {
+            display: block;
+            font-size: 1.2em;
+            color: #5d4a3e;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="banner-container">
+    <div class="header">
+        <h1>O Códex de Titan</h1>
+        <p>Estratégias de Guerra de um Reino Esquecido</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="navigation">
+        <a class="nav-item active" onclick="showTab('intro')">A Lenda de Titan</a>
+        <a class="nav-item" onclick="showTab('metodos')">Os Manuscritos da Tática</a>
+        <a class="nav-item" onclick="showTab('glossario')">O Léxico do Conjurador</a>
+        <a class="nav-item" onclick="showTab('resultados')">As Crônicas da Vitória</a>
+        <a class="nav-item" onclick="showTab('discussao')">Os Desafios do Sábio</a>
+        <a class="nav-item" onclick="showTab('referencias')">Os Sinais do Destino</a>
+    </div>
+
+    <div class="content">
+        <div id="intro" class="tab-content active">
+            <h2>A Lenda de Titan</h2>
+            <p>O trabalho aborda a aplicação de Sistemas Multiagentes (SMA) e conceitos de inteligência artificial no desenvolvimento de um jogo de estratégia simulado chamado Titan. O objetivo é criar jogos mais realistas e detalhados, com inteligência mais crível, utilizando características de agentes como autonomia, proatividade e interação social. Além dos agentes, foram empregados conceitos de organização, ambiente, reputação, sistemas especialistas e ontologias. O jogo simula o comportamento de um jogador humano, onde times autônomos buscam recursos, organizam defesa e ataque, e negociam entre si, sem intervenção humana direta após a configuração inicial.</p>
+        </div>
+
+        <div id="metodos" class="tab-content">
+            <h2>Os Manuscritos da Tática</h2>
+            <p>O jogo Titan foi desenvolvido integrando diversas ferramentas e conceitos de IA. Os agentes foram implementados com duas arquiteturas distintas: a base é um agente reativo em JADE, enquanto os guerreiros são agentes BDI (Crença, Desejo, Intenção) em Jason. O ambiente do jogo foi construído utilizando CArtAgO, que gerencia as operações e percepções dos agentes. A comunicação entre os agentes ocorre através de troca de mensagens (usando KQML e FIPA-ACL) e de um sistema de blackboard para compartilhamento de informações. A organização do sistema multiagente foi modelada com Moise, definindo papéis, grupos e metas. Um sistema de reputação centralizado foi implementado para auxiliar os capitães na seleção de aliados para negociações de ataque. Cada time possui um Sistema Especialista (SE) próprio, desenvolvido em Jess, para auxiliar o capitão na tomada de decisões sobre ataques. A ontologia, criada com Protégé e utilizando o reasoner Hermit, foi usada para definir quais papéis organizacionais cada tipo de agente pode assumir, considerando seus equipamentos e títulos.</p>
+        </div>
+
+        <div id="glossario" class="tab-content">
+            <h2>O Léxico do Conjurador</h2>
+            <ul class="glossary-list">
+                <li>
+                    <strong>SMA (Sistemas Multiagentes):</strong> Sistemas compostos por múltiplos agentes autônomos que interagem entre si para atingir objetivos.
+                </li>
+                <li>
+                    <strong>Agente Reativo:</strong> Agente que reage a estímulos do ambiente sem manter um modelo interno complexo.
+                </li>
+                <li>
+                    <strong>Agente BDI:</strong> Arquitetura de agente que modela o comportamento com base em suas crenças sobre o ambiente, seus desejos (estados a serem alcançados) e suas intenções (planos para atingir desejos).
+                </li>
+                <li>
+                    <strong>JADE:</strong> Plataforma para desenvolvimento de agentes em Java, focada em comunicação.
+                </li>
+                <li>
+                    <strong>Jason:</strong> Linguagem de programação para agentes BDI baseada em AgentSpeak.
+                </li>
+                <li>
+                    <strong>CArtAgO:</strong> Infraestrutura para engenharia de ambientes computacionais em sistemas multiagentes.
+                </li>
+                <li>
+                    <strong>Blackboard:</strong> Estrutura de dados compartilhada onde agentes podem ler e escrever informações.
+                </li>
+                <li>
+                    <strong>KQML/FIPA-ACL:</strong> Linguagem externa para comunicação entre agentes, definindo formato de envelope de mensagens.
+                </li>
+                <li>
+                    <strong>Moise:</strong> Modelo organizacional para a concepção de sistemas multiagentes.
+                </li>
+                <li>
+                    <strong>Sistema Especialista (SE):</strong> Sistema que emula a habilidade de decisão de um especialista humano em um domínio específico.
+                </li>
+                <li>
+                    <strong>Ontologia:</strong> Descrição dos conceitos de um domínio de conhecimento e suas relações.
+                </li>
+            </ul>
+        </div>
+
+        <div id="resultados" class="tab-content">
+            <h2>As Crônicas da Vitória</h2>
+            <p>O desenvolvimento do jogo Titan permitiu aproximar o comportamento dos personagens à realidade de um jogador humano, utilizando ferramentas e técnicas de IA. O uso de SEs próprios para cada time proporcionou comportamentos estratégicos distintos, tornando o jogo mais interessante. O ambiente CArtAgO facilitou a separação entre o desenvolvimento dos agentes e dos demais objetos do sistema. A linguagem Jason mostrou-se adequada para agentes BDI, enquanto JADE, embora útil para comunicação, não se focou na arquitetura BDI. O modelo organizacional Moise, apesar de algumas limitações, foi eficaz no controle dos agentes e na organização do sistema. A ontologia, com o reasoner Hermit, forneceu informações sobre os papéis disponíveis e a quantidade de unidades para cada papel em tempo de execução. O sistema de reputação reduziu a quantidade de mensagens trocadas durante as negociações, tornando-as mais rápidas e eficientes, especialmente em cenários distribuídos. Em geral, as técnicas de IA empregadas resultaram em um comportamento mais crível e negociações de ataque mais realistas.</p>
+        </div>
+
+        <div id="discussao" class="tab-content">
+            <h2>Os Desafios do Sábio</h2>
+            <p>O projeto enfrentou desafios como a lentidão no acesso ao ambiente CArtAgO devido a múltiplos agentes, resolvida com alterações na ferramenta e otimização da interface gráfica. A interação do JADE com o CArtAgO exigiu a criação de uma representação do agente JADE no ambiente, e limitações de concorrência com JADE levaram a reduzir o número de mensagens trocadas. O Moise apresentou problemas na remoção de agentes comprometidos com missões obrigatórias, contornado com a permissão de um número indefinido de agentes para os papéis. Foram feitas contribuições para as ferramentas CArtAgO e Moise, como a correção de um problema na lista de eventos pendentes e a sugestão de metas do tipo maintenance. O trabalho futuro visa melhorar o jogo com novos recursos, verificar questões de desempenho e escalabilidade, incluindo a distribuição da execução, novos tipos de agentes e artefatos, e a possibilidade de interação humana controlando um dos times.</p>
+        </div>
+
+        <div id="referencias" class="tab-content">
+            <h2>Os Sinais do Destino</h2>
+            <ul class="glossary-list">
+                <li>Aplicando Conceitos de Sistemas Multiagentes na Elaboração de um Jogo de Estratégia Simulado.pdf.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showTab(tabId) {
+        const tabs = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.classList.remove('active');
+        });
+
+        document.getElementById(tabId).classList.add('active');
+
+        document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        showTab('intro');
+    });
+</script>
+
+</body>
+</html>
