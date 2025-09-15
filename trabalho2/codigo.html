@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banner Digital - NPCs com IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f0f4f8;
+        color: #1a202c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1rem;
+      }
+      .banner-container {
+        width: 100%;
+        max-width: 900px;
+        background-color: #ffffff;
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+      .tab-button {
+        background-color: #e2e8f0;
+        color: #4a5568;
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
+      }
+      .tab-button.active {
+        background-color: #3182ce;
+        color: white;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .tab-content {
+        display: none;
+        padding: 2rem;
+        line-height: 1.6;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      h1 {
+        color: white;
+        font-weight: 700;
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+      }
+      h2 {
+        color: #2d3748;
+        font-weight: 600;
+        font-size: 1.25rem;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        margin-bottom: 1rem;
+      }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #f7fafc;
+            font-weight: 600;
+        }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="banner-container">
+      <div
+        class="p-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center rounded-t-2xl"
+      >
+        <h1 class="text-3xl font-bold tracking-tight">
+          NPCs com IA em Ambientes Virtuais
+        </h1>
+        <p class="text-xl mt-2">
+          Criando Personagens Críveis com Machine Learning
+        </p>
+      </div>
+
+      <div class="flex justify-around bg-gray-200">
+        <div class="tab-button active" onclick="showTab('introducao')">
+          Introdução
+        </div>
+        <div class="tab-button" onclick="showTab('metodos')">Métodos</div>
+        <div class="tab-button" onclick="showTab('glossario')">Glossário</div>
+        <div class="tab-button" onclick="showTab('resultados')">Resultados</div>
+        <div class="tab-button" onclick="showTab('discussao')">Discussão</div>
+        <div class="tab-button" onclick="showTab('referencias')">
+          Referências
+        </div>
+      </div>
+
+      <div id="introducao" class="tab-content active">
+        <p>
+          O design de NPCs com roteiros fixos resulta em jogabilidade
+          repetitiva. Este estudo explora como a **IA** e o **machine learning**
+          criam NPCs adaptáveis e realistas, que aprimoram a imersão do jogador.
+          A pesquisa demonstra como esses personagens podem evoluir através de
+          interações em tempo real.
+        </p>
+      </div>
+
+      <div id="metodos" class="tab-content">
+        <h2>Abordagem Experimental</h2>
+        <p>
+          Uma estrutura de simulação foi criada para testar o comportamento dos
+          NPCs em diversos cenários, como combate e missões de narrativa.
+          **Aprendizagem por reforço** foi utilizada para desenvolver
+          estratégias de recompensa, enquanto a **aprendizagem supervisionada**
+          estabeleceu padrões de comportamento e aprimorou o diálogo.
+        </p>
+        <h2>Métricas de Desempenho</h2>
+        <p>
+          As métricas incluíram: **Pontuação de Adaptação**, **Precisão do
+          Diálogo**, **Tempo de Convergência** e **Tempo Médio de Resposta**.
+        </p>
+      </div>
+
+      <div id="glossario" class="tab-content">
+        <ul class="list-disc list-inside space-y-2">
+          <li>**NPC (Non-Playable Character):** Personagem não jogável.</li>
+          <li>
+            **Aprendizagem por Reforço:** Agente aprende a se comportar para
+            maximizar uma recompensa.
+          </li>
+          <li>
+            **Aprendizagem Profunda:** Machine learning que utiliza redes
+            neurais.
+          </li>
+          <li>
+            **Árvores de Comportamento:** Estrutura para criar comportamentos
+            modulares em NPCs.
+          </li>
+        </ul>
+      </div>
+
+      <div id="resultados" class="tab-content">
+        <h2>Superioridade da IA</h2>
+        <p>
+          NPCs com IA demonstraram maior capacidade de resposta e
+          adaptabilidade, superando os sistemas tradicionais.
+        </p>
+        <h2>Melhora da Experiência</h2>
+        <p>
+          A interação com os NPCs de IA resultou em maior envolvimento, com
+          jogadores relatando conexões emocionais mais fortes.
+        </p>
+         <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Métrica</th>
+                    <th>NPCs com IA</th>
+                    <th>NPCs Tradicionais</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Conexão Emocional (0-10)</td>
+                    <td>8.5</td>
+                    <td>5.2</td>
+                </tr>
+                <tr>
+                    <td>Qualidade da Interação (0-10)</td>
+                    <td>9.0</td>
+                    <td>6.0</td>
+                </tr>
+                <tr>
+                    <td>Envolvimento Geral (0-10)</td>
+                    <td>8.8</td>
+                    <td>5.8</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+
+      <div id="discussao" class="tab-content">
+        <div id="discussion-text">
+          <p>
+            O estudo confirma que a IA pode revolucionar o design de jogos,
+            transformando NPCs de entidades estáticas em personagens dinâmicos e
+            críveis. A combinação de aprendizagem por reforço e aprendizagem
+            supervisionada cria um sistema flexível e robusto. As métricas de
+            desempenho comprovam a superioridade dos NPCs com IA, que não só
+            reagem melhor, mas também melhoram a experiência de jogo.
+          </p>
+        </div>
+      </div>
+
+      <div id="referencias" class="tab-content">
+        <ul class="list-decimal list-inside space-y-2">
+          <li>
+            Mehta, Niket. "The Role of AI in Game Development and Player
+            Experience." Disponível em SSRN 5101269 (2025).
+          </li>
+          <li>
+            Ravichandran, K., and Senthil Kumar Ilango. "Influence of AI Powered
+            Gaming Developers and Analyzing Player." Disponível em SSRN 4455822.
+          </li>
+          <li>
+            Zeng, Zhenping. "The Future of Gaming: How Artificial Intelligence
+            is Revolutionizing the Industry." ReCIBE, Revista electrónica de
+            Computación, Informática, Biomédica y Electrónica 13.3 (2024):
+            E6-10.
+          </li>
+          <li>
+            Korkiakoski, Mikko, et al. "An Empirical Evaluation of Ai-Powered
+            Non-Player Characters' Perceived Realism and. Performance in Virtual
+            Reality Environments." Disponível em SSRN 5148461.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      function showTab(tabId) {
+        document.querySelectorAll(".tab-button").forEach((button) => {
+          button.classList.remove("active");
+        });
+        document.querySelectorAll(".tab-content").forEach((content) => {
+          content.classList.remove("active");
+        });
+        document
+          .querySelector(`.tab-button[onclick="showTab('${tabId}')"]`)
+          .classList.add("active");
+        document.getElementById(tabId).classList.add("active");
+      }
+
+      async function summarizeDiscussion() {
+        const discussionText =
+          document.getElementById("discussion-text").innerText;
+        const loadingDiv = document.getElementById("loading");
+        const summaryOutput = document.getElementById("summary-output");
+
+        loadingDiv.style.display = "block";
+        summaryOutput.style.display = "none";
+        summaryOutput.innerHTML = "";
+
+        const userPrompt = `Resuma o seguinte texto em uma frase: ${discussionText}`;
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+        const payload = {
+          contents: [{ parts: [{ text: userPrompt }] }],
+        };
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const result = await response.json();
+          const text =
+            result?.candidates?.[0]?.content?.parts?.[0]?.text ||
+            "Não foi possível gerar o resumo.";
+          summaryOutput.innerHTML = `**Resumo da Discussão:**<br>${text}`;
+          summaryOutput.style.display = "block";
+        } catch (error) {
+          console.error("Erro ao chamar a API do Gemini:", error);
+          summaryOutput.innerHTML = "Ocorreu um erro ao gerar o resumo.";
+          summaryOutput.style.display = "block";
+        } finally {
+          loadingDiv.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
