@@ -18,11 +18,9 @@
       margin: 0;
       padding: 0;
       background-color: #1a1a2e;
-      /* Espaço profundo */
       color: #b3cde0;
-      /* Azul claro para texto */
       line-height: 1.6;
-      background-image: url("./bg.jpg");
+      background-image: url("./img/bg.jpg");
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
@@ -99,6 +97,16 @@
     .content h2 {
       font-family: "Orbitron", sans-serif;
       color: #8be4fd;
+      border-bottom: 2px solid #5a5a7f;
+      padding-bottom: 5px;
+      margin-top: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+     .content h3 {
+      font-family: "Orbitron", sans-serif;
+      color: #5ab93d;
       border-bottom: 2px solid #5a5a7f;
       padding-bottom: 5px;
       margin-top: 0;
@@ -183,26 +191,41 @@
 
       <div id="metodos" class="tab-content">
         <h2>Métodos</h2>
-        <p>
-          O jogo Titan foi desenvolvido integrando diversas ferramentas e
-          conceitos de IA. Os agentes foram implementados com duas
-          arquiteturas distintas: a base é um agente reativo em JADE, enquanto
-          os guerreiros são agentes BDI (Crença, Desejo, Intenção) em Jason. O
-          ambiente do jogo foi construído utilizando CArtAgO, que gerencia as
-          operações e percepções dos agentes. A comunicação entre os agentes
-          ocorre através de troca de mensagens (usando KQML e FIPA-ACL) e de
-          um sistema de blackboard para compartilhamento de informações. A
-          organização do sistema multiagente foi modelada com Moise, definindo
-          papéis, grupos e metas. Um sistema de reputação centralizado foi
-          implementado para auxiliar os capitães na seleção de aliados para
-          negociações de ataque. Cada time possui um Sistema Especialista (SE)
-          próprio, desenvolvido em Jess, para auxiliar o capitão na tomada de
-          decisões sobre ataques. A ontologia, criada com Protégé e utilizando
-          o reasoner Hermit, foi usada para definir quais papéis
-          organizacionais cada tipo de agente pode assumir, considerando seus
-          equipamentos e títulos.
-        </p>
-        <img src="img/jogo.png" alt="" />
+        <p>O estudo aplicou conceitos de <strong>Sistemas Multiagentes (SMA)</strong> na elaboração de um jogo de
+          estratégia simulado, seguindo uma abordagem em três etapas principais:</p>
+
+        <h3>1. Modelagem do Ambiente</h2>
+        <ul>
+          <li><strong>CArtAgO</strong>: utilizado para criar o ambiente do jogo, com artefatos que oferecem operações
+            como <em>join</em>, <em>goTo</em>, <em>extractResource</em> e <em>attackAgent</em>.</li>
+          <li><strong>Ontologia (Protégé + Hermit)</strong>: definição de conceitos e papéis (ex.: capitão, soldado,
+            etc.), permitindo raciocínio sobre restrições e relações.</li>
+          <li><strong>Organização MOISE</strong>: estrutura funcional e normativa (grupos, papéis, metas e missões) para
+            guiar o comportamento coletivo.</li>
+        </ul>
+
+        <h3>2. Modelagem dos Agentes</h2>
+        <ul>
+          <li><strong>JADE</strong>: implementação de agentes reativos responsáveis por tarefas básicas.</li>
+          <li><strong>Jason</strong>: implementação de agentes BDI (crenças, desejos e intenções) para tomada de decisão
+            estratégica.</li>
+          <li><strong>Comunicação</strong>: uso de mensagens (FIPA-ACL no JADE e KQML no Jason) e <em>Blackboard</em>
+            para compartilhamento global de informações.</li>
+          <li><strong>Negociação entre Capitães</strong>: protocolo dividido em quatro fases (Início, Inventário,
+            Definição, Ataque) para coordenar estratégias de combate.</li>
+          <li><strong>Sistema de Reputação</strong>: avaliação de confiabilidade dos parceiros com base em interações
+            anteriores (pontuação +1 ou -1).</li>
+        </ul>
+
+        <h3>3. Apoio à Tomada de Decisão</h2>
+        <ul>
+          <li><strong>Sistemas Especialistas (Jess)</strong>: motor de regras para auxiliar capitães a decidir iniciar
+            ataques, considerando fatores como diferença de unidades.</li>
+          <li><strong>Interface Gráfica</strong>: visualização do jogo (times, campos de visão, tiros e poços) e
+            controle de desempenho com múltiplas threads.</li>
+          <li><strong>Otimizações de Integração</strong>: redução do número de mensagens, uso de artefatos únicos no
+            ambiente e integração JADE ↔ CArtAgO.</li>
+        </ul>
       </div>
 
       <div id="glossario" class="tab-content">
@@ -280,6 +303,7 @@
           técnicas de IA empregadas resultaram em um comportamento mais crível
           e negociações de ataque mais realistas.
         </p>
+        <img src="img/jogo.png" alt="" />
       </div>
 
       <div id="discussao" class="tab-content">
