@@ -282,50 +282,59 @@
         </ul>
       </div>
 
-      <div id="resultados" class="tab-content">
-        <h2>Resultados</h2>
-        <p>
-          O desenvolvimento do jogo Titan permitiu aproximar o comportamento
-          dos personagens à realidade de um jogador humano, utilizando
-          ferramentas e técnicas de IA. O uso de SEs próprios para cada time
-          proporcionou comportamentos estratégicos distintos, tornando o jogo
-          mais interessante. O ambiente CArtAgO facilitou a separação entre o
-          desenvolvimento dos agentes e dos demais objetos do sistema. A
-          linguagem Jason mostrou-se adequada para agentes BDI, enquanto JADE,
-          embora útil para comunicação, não se focou na arquitetura BDI. O
-          modelo organizacional Moise, apesar de algumas limitações, foi
-          eficaz no controle dos agentes e na organização do sistema. A
-          ontologia, com o reasoner Hermit, forneceu informações sobre os
-          papéis disponíveis e a quantidade de unidades para cada papel em
-          tempo de execução. O sistema de reputação reduziu a quantidade de
-          mensagens trocadas durante as negociações, tornando-as mais rápidas
-          e eficientes, especialmente em cenários distribuídos. Em geral, as
-          técnicas de IA empregadas resultaram em um comportamento mais crível
-          e negociações de ataque mais realistas.
-        </p>
-        <img src="img/jogo.png" alt="" />
-      </div>
+<div id="resultados" class="tab-content">
+  <h2>Resultados</h2>
+
+  <h3>Principais Achados</h3>
+  <ul class="discussion-list">
+    <li><b>Comportamento Realista</b>: o jogo Titan aproximou as ações dos agentes ao comportamento de um jogador humano.</li>
+    <li><b>Estratégias Diferenciadas</b>: cada time utilizou Sistemas Especialistas próprios, resultando em decisões distintas e maior interesse no jogo.</li>
+    <li><b>Ambiente CArtAgO</b>: facilitou a separação entre agentes e demais objetos do sistema.</li>
+    <li><b>Jason</b>: mostrou-se adequado para agentes BDI e tomada de decisão estratégica.</li>
+    <li><b>JADE</b>: útil para comunicação, mas com limitações em relação à arquitetura BDI.</li>
+    <li><b>Moise</b>: eficiente na organização e controle de agentes, apesar de restrições.</li>
+    <li><b>Ontologia + Hermit</b>: permitiu verificar papéis disponíveis e unidades em tempo de execução.</li>
+    <li><b>Sistema de Reputação</b>: reduziu o número de mensagens trocadas, tornando negociações mais rápidas e eficientes.</li>
+  </ul>
+
+  <h3>Impacto Geral</h3>
+  <p>
+    As técnicas de Inteligência Artificial aplicadas tornaram o jogo mais crível, com negociações e ataques mais realistas.  
+    A combinação de diferentes ferramentas (Jason, JADE, Moise, CArtAgO e Ontologias) mostrou-se eficaz para desenvolver um sistema multiagente de estratégia.
+  </p>
+
+  <img src="img/jogo.png" alt="Representação do jogo Titan" style="margin-top:15px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.5);" />
+</div>
+
+
 
       <div id="discussao" class="tab-content">
-        <h2>Discussão</h2>
-        <p>
-          O projeto enfrentou desafios como a lentidão no acesso ao ambiente
-          CArtAgO devido a múltiplos agentes, resolvida com alterações na
-          ferramenta e otimização da interface gráfica. A interação do JADE
-          com o CArtAgO exigiu a criação de uma representação do agente JADE
-          no ambiente, e limitações de concorrência com JADE levaram a reduzir
-          o número de mensagens trocadas. O Moise apresentou problemas na
-          remoção de agentes comprometidos com missões obrigatórias,
-          contornado com a permissão de um número indefinido de agentes para
-          os papéis. Foram feitas contribuições para as ferramentas CArtAgO e
-          Moise, como a correção de um problema na lista de eventos pendentes
-          e a sugestão de metas do tipo maintenance. O trabalho futuro visa
-          melhorar o jogo com novos recursos, verificar questões de desempenho
-          e escalabilidade, incluindo a distribuição da execução, novos tipos
-          de agentes e artefatos, e a possibilidade de interação humana
-          controlando um dos times.
-        </p>
-      </div>
+  <h2>Discussão</h2>
+
+  <h3>Desafios Encontrados</h3>
+  <ul class="discussion-list">
+    <li><b>Lentidão no CArtAgO</b>: causada por múltiplos agentes → resolvida com otimização da interface gráfica e ajustes na ferramenta.</li>
+    <li><b>Integração JADE ↔ CArtAgO</b>: exigiu a criação de uma representação do agente JADE no ambiente.</li>
+    <li><b>Limitações de Concorrência no JADE</b>: solução encontrada foi reduzir o número de mensagens trocadas.</li>
+    <li><b>Moise</b>: dificuldade em remover agentes de missões obrigatórias → solução: permitir número indefinido de agentes nos papéis.</li>
+  </ul>
+
+  <h3>Contribuições para as Ferramentas</h3>
+  <ul class="discussion-list">
+    <li>Correção de problema na lista de eventos pendentes do <b>CArtAgO</b>.</li>
+    <li>Sugestão de <i>metas do tipo maintenance</i> para o <b>Moise</b>.</li>
+  </ul>
+
+  <h3>Trabalhos Futuros</h3>
+  <ul class="discussion-list">
+    <li>Inserir novos recursos no jogo.</li>
+    <li>Avaliar desempenho e escalabilidade → incluindo execução distribuída.</li>
+    <li>Desenvolver novos tipos de agentes e artefatos.</li>
+    <li>Permitir interação humana controlando um dos times.</li>
+  </ul>
+</div>
+
+
 
       <div id="referencias" class="tab-content">
         <h2>Referências do Artigo</h2>
