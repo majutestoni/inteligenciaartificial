@@ -1,338 +1,431 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aplicando Conceitos de Sistemas Multiagentes na Elaboração de um Jogo de Estratégia Simulado</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      img {
-        width: 100%;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aplicando Conceitos de Sistemas Multiagentes na Elaboração de um Jogo de Estratégia Simulado</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    img {
+      width: 100%;
+    }
+
+    body {
+      font-family: "Roboto Mono", monospace;
+      margin: 0;
+      padding: 0;
+      background-color: #1a1a2e;
+      /* Espaço profundo */
+      color: #b3cde0;
+      /* Azul claro para texto */
+      line-height: 1.6;
+      background-image: url("./bg.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    .banner-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: rgba(15, 15, 27, 0.9);
+      /* Fundo semi-transparente */
+      border: 2px solid #5a5a7f;
+      /* Borda de interface */
+      box-shadow: 0 0 15px #3a3a5f;
+      padding: 30px;
+      box-sizing: border-box;
+      backdrop-filter: blur(5px);
+      border-radius: 10px;
+    }
+
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #5a5a7f;
+    }
+
+    .header h1 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 2.5em;
+      color: #8be4fd;
+      /* Ciano brilhante */
+      margin: 0;
+      text-shadow: 0 0 5px #8be4fd;
+    }
+
+    .header p {
+      font-family: "Orbitron", sans-serif;
+      color: #b3cde0;
+      font-size: 0.75em;
+      margin-top: 5px;
+      letter-spacing: 2px;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-item {
+      cursor: pointer;
+      padding: 10px 15px;
+      color: #b3cde0;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s, text-shadow 0.3s, transform 0.2s;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: #8be4fd;
+      text-shadow: 0 0 8px #8be4fd;
+      transform: translateY(-2px);
+    }
+
+    .content {
+      padding-top: 20px;
+    }
+
+    .content h2 {
+      font-family: "Orbitron", sans-serif;
+      color: #8be4fd;
+      border-bottom: 2px solid #5a5a7f;
+      padding-bottom: 5px;
+      margin-top: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 1s;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
       }
 
-      body {
-        font-family: "Roboto Mono", monospace;
-        margin: 0;
-        padding: 0;
-        background-color: #1a1a2e; /* Espaço profundo */
-        color: #b3cde0; /* Azul claro para texto */
-        line-height: 1.6;
-        background-image: url("./bg.jpg");
-        background-size: cover;
-        background-attachment: fixed;
-        background-position: center;
+      to {
+        opacity: 1;
       }
+    }
 
-      .banner-container {
-        width: 100%;
-        max-width: 900px;
-        margin: 20px auto;
-        background-color: rgba(15, 15, 27, 0.9); /* Fundo semi-transparente */
-        border: 2px solid #5a5a7f; /* Borda de interface */
-        box-shadow: 0 0 15px #3a3a5f;
-        padding: 30px;
-        box-sizing: border-box;
-        backdrop-filter: blur(5px);
-        border-radius: 10px;
-      }
+    .glossary-list {
+      list-style-type: none;
+      padding: 0;
+    }
 
-      .header {
-        text-align: center;
-        padding-bottom: 20px;
-        border-bottom: 1px dashed #5a5a7f;
-      }
+    .glossary-list li {
+      margin-bottom: 15px;
+      border-left: 3px solid #8be4fd;
+      padding-left: 15px;
+    }
 
-      .header h1 {
-        font-family: "Orbitron", sans-serif;
-        font-size: 2.5em;
-        color: #8be4fd; /* Ciano brilhante */
-        margin: 0;
-        text-shadow: 0 0 5px #8be4fd;
-      }
+    .glossary-list li strong {
+      display: block;
+      font-size: 1.2em;
+      color: #b3cde0;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
 
-      .header p {
-        font-family: "Orbitron", sans-serif;
-        color: #b3cde0;
-        font-size: 0.75em;
-        margin-top: 5px;
-        letter-spacing: 2px;
-      }
-
-      .navigation {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-      }
-
-      .nav-item {
-        cursor: pointer;
-        padding: 10px 15px;
-        color: #b3cde0;
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s, text-shadow 0.3s, transform 0.2s;
-        text-transform: uppercase;
-        font-size: 0.9em;
-        letter-spacing: 1px;
-      }
-
-      .nav-item:hover,
-      .nav-item.active {
-        color: #8be4fd;
-        text-shadow: 0 0 8px #8be4fd;
-        transform: translateY(-2px);
-      }
-
-      .content {
-        padding-top: 20px;
-      }
-
-      .content h2 {
-        font-family: "Orbitron", sans-serif;
-        color: #8be4fd;
-        border-bottom: 2px solid #5a5a7f;
-        padding-bottom: 5px;
-        margin-top: 0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .tab-content {
-        display: none;
-        animation: fadeIn 1s;
-      }
-
-      .tab-content.active {
-        display: block;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      .glossary-list {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      .glossary-list li {
-        margin-bottom: 15px;
-        border-left: 3px solid #8be4fd;
-        padding-left: 15px;
-      }
-
-      .glossary-list li strong {
-        display: block;
-        font-size: 1.2em;
-        color: #b3cde0;
-        margin-bottom: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="banner-container">
-      <div class="header">
-        <h1>Aplicando Conceitos de Sistemas Multiagentes na Elaboração de um Jogo de Estratégia Simulado</h1>
-        <p>Fonte: Neri, José Rodrigo & Zatelli, Maicon & Uez, Daniela & Callegaro, Rafael -  Revista de Informática Teórica e Aplicada (2013) <a href="https://www.researchgate.net/publication/332588616_Aplicando_Conceitos_de_Sistemas_Multiagentes_na_Elaboracao_de_um_Jogo_de_Estrategia_Simulado" target="_blank">[Texto Original]</a></p>
-      </div>
-
-      <div class="navigation">
-        <a class="nav-item active" onclick="showTab('intro')">Introdução</a>
-        <a class="nav-item" onclick="showTab('metodos')">Métodos</a>
-        <a class="nav-item" onclick="showTab('glossario')"
-          >Glossário</a
-        >
-        <a class="nav-item" onclick="showTab('resultados')"
-          >Resultados</a
-        >
-        <a class="nav-item" onclick="showTab('discussao')">Discussão</a>
-        <a class="nav-item" onclick="showTab('referencias')"
-          >Referências</a
-        >
-      </div>
-
-      <div class="content">
-        <div id="intro" class="tab-content active">
-          <h2>Introdução</h2>
-          <p>
-            O trabalho aborda a aplicação de Sistemas Multiagentes (SMA) e
-            conceitos de inteligência artificial no desenvolvimento de um jogo
-            de estratégia simulado chamado Titan. O objetivo é criar jogos mais
-            realistas e detalhados, com inteligência mais crível, utilizando
-            características de agentes como autonomia, proatividade e interação
-            social. Além dos agentes, foram empregados conceitos de organização,
-            ambiente, reputação, sistemas especialistas e ontologias. O jogo
-            simula o comportamento de um jogador humano, onde times autônomos
-            buscam recursos, organizam defesa e ataque, e negociam entre si, sem
-            intervenção humana direta após a configuração inicial.
-          </p>
-        </div>
-
-        <div id="metodos" class="tab-content">
-          <h2>Métodos</h2>
-          <p>
-            O jogo Titan foi desenvolvido integrando diversas ferramentas e
-            conceitos de IA. Os agentes foram implementados com duas
-            arquiteturas distintas: a base é um agente reativo em JADE, enquanto
-            os guerreiros são agentes BDI (Crença, Desejo, Intenção) em Jason. O
-            ambiente do jogo foi construído utilizando CArtAgO, que gerencia as
-            operações e percepções dos agentes. A comunicação entre os agentes
-            ocorre através de troca de mensagens (usando KQML e FIPA-ACL) e de
-            um sistema de blackboard para compartilhamento de informações. A
-            organização do sistema multiagente foi modelada com Moise, definindo
-            papéis, grupos e metas. Um sistema de reputação centralizado foi
-            implementado para auxiliar os capitães na seleção de aliados para
-            negociações de ataque. Cada time possui um Sistema Especialista (SE)
-            próprio, desenvolvido em Jess, para auxiliar o capitão na tomada de
-            decisões sobre ataques. A ontologia, criada com Protégé e utilizando
-            o reasoner Hermit, foi usada para definir quais papéis
-            organizacionais cada tipo de agente pode assumir, considerando seus
-            equipamentos e títulos.
-          </p>
-          <img src="img/jogo.png" alt="" />
-        </div>
-
-        <div id="glossario" class="tab-content">
-          <h2>Glossário</h2>
-          <ul class="glossary-list">
-            <li>
-              <strong>SMA (Sistemas Multiagentes):</strong> Sistemas compostos
-              por múltiplos agentes autônomos que interagem entre si para
-              atingir objetivos.
-            </li>
-            <li>
-              <strong>Agente Reativo:</strong> Agente que reage a estímulos do
-              ambiente sem manter um modelo interno complexo.
-            </li>
-            <li>
-              <strong>Agente BDI:</strong> Arquitetura de agente que modela o
-              comportamento com base em suas crenças sobre o ambiente, seus
-              desejos (estados a serem alcançados) e suas intenções (planos para
-              atingir desejos).
-            </li>
-            <li>
-              <strong>JADE:</strong> Plataforma para desenvolvimento de agentes
-              em Java, focada em comunicação.
-            </li>
-            <li>
-              <strong>Jason:</strong> Linguagem de programação para agentes BDI
-              baseada em AgentSpeak.
-            </li>
-            <li>
-              <strong>CArtAgO:</strong> Infraestrutura para engenharia de
-              ambientes computacionais em sistemas multiagentes.
-            </li>
-            <li>
-              <strong>Blackboard:</strong> Estrutura de dados compartilhada onde
-              agentes podem ler e escrever informações.
-            </li>
-            <li>
-              <strong>KQML/FIPA-ACL:</strong> Linguagem externa para comunicação
-              entre agentes, definindo formato de envelope de mensagens.
-            </li>
-            <li>
-              <strong>Moise:</strong> Modelo organizacional para a concepção de
-              sistemas multiagentes.
-            </li>
-            <li>
-              <strong>Sistema Especialista (SE):</strong> Sistema que emula a
-              habilidade de decisão de um especialista humano em um domínio
-              específico.
-            </li>
-            <li>
-              <strong>Ontologia:</strong> Descrição dos conceitos de um domínio
-              de conhecimento e suas relações.
-            </li>
-          </ul>
-        </div>
-
-        <div id="resultados" class="tab-content">
-          <h2>Resultados</h2>
-          <p>
-            O desenvolvimento do jogo Titan permitiu aproximar o comportamento
-            dos personagens à realidade de um jogador humano, utilizando
-            ferramentas e técnicas de IA. O uso de SEs próprios para cada time
-            proporcionou comportamentos estratégicos distintos, tornando o jogo
-            mais interessante. O ambiente CArtAgO facilitou a separação entre o
-            desenvolvimento dos agentes e dos demais objetos do sistema. A
-            linguagem Jason mostrou-se adequada para agentes BDI, enquanto JADE,
-            embora útil para comunicação, não se focou na arquitetura BDI. O
-            modelo organizacional Moise, apesar de algumas limitações, foi
-            eficaz no controle dos agentes e na organização do sistema. A
-            ontologia, com o reasoner Hermit, forneceu informações sobre os
-            papéis disponíveis e a quantidade de unidades para cada papel em
-            tempo de execução. O sistema de reputação reduziu a quantidade de
-            mensagens trocadas durante as negociações, tornando-as mais rápidas
-            e eficientes, especialmente em cenários distribuídos. Em geral, as
-            técnicas de IA empregadas resultaram em um comportamento mais crível
-            e negociações de ataque mais realistas.
-          </p>
-        </div>
-
-        <div id="discussao" class="tab-content">
-          <h2>Discussão</h2>
-          <p>
-            O projeto enfrentou desafios como a lentidão no acesso ao ambiente
-            CArtAgO devido a múltiplos agentes, resolvida com alterações na
-            ferramenta e otimização da interface gráfica. A interação do JADE
-            com o CArtAgO exigiu a criação de uma representação do agente JADE
-            no ambiente, e limitações de concorrência com JADE levaram a reduzir
-            o número de mensagens trocadas. O Moise apresentou problemas na
-            remoção de agentes comprometidos com missões obrigatórias,
-            contornado com a permissão de um número indefinido de agentes para
-            os papéis. Foram feitas contribuições para as ferramentas CArtAgO e
-            Moise, como a correção de um problema na lista de eventos pendentes
-            e a sugestão de metas do tipo maintenance. O trabalho futuro visa
-            melhorar o jogo com novos recursos, verificar questões de desempenho
-            e escalabilidade, incluindo a distribuição da execução, novos tipos
-            de agentes e artefatos, e a possibilidade de interação humana
-            controlando um dos times.
-          </p>
-        </div>
-
-        <div id="referencias" class="tab-content">
-          <h2>Referências do Artigo</h2>
-          <ul class="glossary-list">
-            <li>
-              Aplicando Conceitos de Sistemas Multiagentes na Elaboração de um
-              Jogo de Estratégia Simulado.pdf.
-            </li>
-          </ul>
-        </div>
-      </div>
+<body>
+  <div class="banner-container">
+    <div class="header">
+      <h1>Aplicando Conceitos de Sistemas Multiagentes na Elaboração de um Jogo de Estratégia Simulado</h1>
+      <p>Fonte: Neri, José Rodrigo & Zatelli, Maicon & Uez, Daniela & Callegaro, Rafael - Revista de Informática Teórica
+        e Aplicada (2013) <a
+          href="https://www.researchgate.net/publication/332588616_Aplicando_Conceitos_de_Sistemas_Multiagentes_na_Elaboracao_de_um_Jogo_de_Estrategia_Simulado"
+          target="_blank">[Texto Original]</a></p>
     </div>
 
-    <script>
-      function showTab(tabId) {
-        const tabs = document.querySelectorAll(".tab-content");
-        tabs.forEach((tab) => {
-          tab.classList.remove("active");
-        });
+    <div class="navigation">
+      <a class="nav-item active" onclick="showTab('intro')">Introdução</a>
+      <a class="nav-item" onclick="showTab('metodos')">Métodos</a>
+      <a class="nav-item" onclick="showTab('glossario')">Glossário</a>
+      <a class="nav-item" onclick="showTab('resultados')">Resultados</a>
+      <a class="nav-item" onclick="showTab('discussao')">Discussão</a>
+      <a class="nav-item" onclick="showTab('referencias')">Referências</a>
+    </div>
 
-        const navItems = document.querySelectorAll(".nav-item");
-        navItems.forEach((item) => {
-          item.classList.remove("active");
-        });
+    <div class="content">
+      <div id="intro" class="tab-content active">
+        <h2>Introdução</h2>
+        <p>
+          O trabalho aborda a aplicação de Sistemas Multiagentes (SMA) e
+          conceitos de inteligência artificial no desenvolvimento de um jogo
+          de estratégia simulado chamado Titan. O objetivo é criar jogos mais
+          realistas e detalhados, com inteligência mais crível, utilizando
+          características de agentes como autonomia, proatividade e interação
+          social. Além dos agentes, foram empregados conceitos de organização,
+          ambiente, reputação, sistemas especialistas e ontologias. O jogo
+          simula o comportamento de um jogador humano, onde times autônomos
+          buscam recursos, organizam defesa e ataque, e negociam entre si, sem
+          intervenção humana direta após a configuração inicial.
+        </p>
+      </div>
 
-        document.getElementById(tabId).classList.add("active");
+      <div id="metodos" class="tab-content">
+        <h2>Métodos</h2>
+        <p>
+          O jogo Titan foi desenvolvido integrando diversas ferramentas e
+          conceitos de IA. Os agentes foram implementados com duas
+          arquiteturas distintas: a base é um agente reativo em JADE, enquanto
+          os guerreiros são agentes BDI (Crença, Desejo, Intenção) em Jason. O
+          ambiente do jogo foi construído utilizando CArtAgO, que gerencia as
+          operações e percepções dos agentes. A comunicação entre os agentes
+          ocorre através de troca de mensagens (usando KQML e FIPA-ACL) e de
+          um sistema de blackboard para compartilhamento de informações. A
+          organização do sistema multiagente foi modelada com Moise, definindo
+          papéis, grupos e metas. Um sistema de reputação centralizado foi
+          implementado para auxiliar os capitães na seleção de aliados para
+          negociações de ataque. Cada time possui um Sistema Especialista (SE)
+          próprio, desenvolvido em Jess, para auxiliar o capitão na tomada de
+          decisões sobre ataques. A ontologia, criada com Protégé e utilizando
+          o reasoner Hermit, foi usada para definir quais papéis
+          organizacionais cada tipo de agente pode assumir, considerando seus
+          equipamentos e títulos.
+        </p>
+        <img src="img/jogo.png" alt="" />
+      </div>
 
-        document
-          .querySelector(`[onclick="showTab('${tabId}')"]`)
-          .classList.add("active");
-      }
+      <div id="glossario" class="tab-content">
+        <h2>Glossário</h2>
+        <ul class="glossary-list">
+          <li>
+            <strong>SMA (Sistemas Multiagentes):</strong> Sistemas compostos
+            por múltiplos agentes autônomos que interagem entre si para
+            atingir objetivos.
+          </li>
+          <li>
+            <strong>Agente Reativo:</strong> Agente que reage a estímulos do
+            ambiente sem manter um modelo interno complexo.
+          </li>
+          <li>
+            <strong>Agente BDI:</strong> Arquitetura de agente que modela o
+            comportamento com base em suas crenças sobre o ambiente, seus
+            desejos (estados a serem alcançados) e suas intenções (planos para
+            atingir desejos).
+          </li>
+          <li>
+            <strong>JADE:</strong> Plataforma para desenvolvimento de agentes
+            em Java, focada em comunicação.
+          </li>
+          <li>
+            <strong>Jason:</strong> Linguagem de programação para agentes BDI
+            baseada em AgentSpeak.
+          </li>
+          <li>
+            <strong>CArtAgO:</strong> Infraestrutura para engenharia de
+            ambientes computacionais em sistemas multiagentes.
+          </li>
+          <li>
+            <strong>Blackboard:</strong> Estrutura de dados compartilhada onde
+            agentes podem ler e escrever informações.
+          </li>
+          <li>
+            <strong>KQML/FIPA-ACL:</strong> Linguagem externa para comunicação
+            entre agentes, definindo formato de envelope de mensagens.
+          </li>
+          <li>
+            <strong>Moise:</strong> Modelo organizacional para a concepção de
+            sistemas multiagentes.
+          </li>
+          <li>
+            <strong>Sistema Especialista (SE):</strong> Sistema que emula a
+            habilidade de decisão de um especialista humano em um domínio
+            específico.
+          </li>
+          <li>
+            <strong>Ontologia:</strong> Descrição dos conceitos de um domínio
+            de conhecimento e suas relações.
+          </li>
+        </ul>
+      </div>
 
-      document.addEventListener("DOMContentLoaded", () => {
-        showTab("intro");
+      <div id="resultados" class="tab-content">
+        <h2>Resultados</h2>
+        <p>
+          O desenvolvimento do jogo Titan permitiu aproximar o comportamento
+          dos personagens à realidade de um jogador humano, utilizando
+          ferramentas e técnicas de IA. O uso de SEs próprios para cada time
+          proporcionou comportamentos estratégicos distintos, tornando o jogo
+          mais interessante. O ambiente CArtAgO facilitou a separação entre o
+          desenvolvimento dos agentes e dos demais objetos do sistema. A
+          linguagem Jason mostrou-se adequada para agentes BDI, enquanto JADE,
+          embora útil para comunicação, não se focou na arquitetura BDI. O
+          modelo organizacional Moise, apesar de algumas limitações, foi
+          eficaz no controle dos agentes e na organização do sistema. A
+          ontologia, com o reasoner Hermit, forneceu informações sobre os
+          papéis disponíveis e a quantidade de unidades para cada papel em
+          tempo de execução. O sistema de reputação reduziu a quantidade de
+          mensagens trocadas durante as negociações, tornando-as mais rápidas
+          e eficientes, especialmente em cenários distribuídos. Em geral, as
+          técnicas de IA empregadas resultaram em um comportamento mais crível
+          e negociações de ataque mais realistas.
+        </p>
+      </div>
+
+      <div id="discussao" class="tab-content">
+        <h2>Discussão</h2>
+        <p>
+          O projeto enfrentou desafios como a lentidão no acesso ao ambiente
+          CArtAgO devido a múltiplos agentes, resolvida com alterações na
+          ferramenta e otimização da interface gráfica. A interação do JADE
+          com o CArtAgO exigiu a criação de uma representação do agente JADE
+          no ambiente, e limitações de concorrência com JADE levaram a reduzir
+          o número de mensagens trocadas. O Moise apresentou problemas na
+          remoção de agentes comprometidos com missões obrigatórias,
+          contornado com a permissão de um número indefinido de agentes para
+          os papéis. Foram feitas contribuições para as ferramentas CArtAgO e
+          Moise, como a correção de um problema na lista de eventos pendentes
+          e a sugestão de metas do tipo maintenance. O trabalho futuro visa
+          melhorar o jogo com novos recursos, verificar questões de desempenho
+          e escalabilidade, incluindo a distribuição da execução, novos tipos
+          de agentes e artefatos, e a possibilidade de interação humana
+          controlando um dos times.
+        </p>
+      </div>
+
+      <div id="referencias" class="tab-content">
+        <h2>Referências do Artigo</h2>
+        <ul class="glossary-list">
+          <li>[1] <b>Felipe Carvalho</b>. Comportamento em grupo de personagens do tipo black&white, 2004.</li>
+          <li>[2] <b>Stefan J. Johansson</b>. On using multi-agent systems in playing board games. In Proceedings of the
+            fifth international joint conference on Autonomous agents and multiagent systems, AAMAS '06, pages 569-576,
+            New York, NY, USA, 2006. ACM.</li>
+          <li>[3] <b>Priscilla F. de Abreu, Vera Maria B. Werneck, Rosa Maria E. Moreira da Costa, and Luis Alfredo V.
+              de Carvalho</b>. Employing multi-agents in 3-d game for cognitive stimulation. In Proceedings of the 2011
+            XIII Symposium on Virtual Reality, SVR '11, pages 73-78, Washington, DC, USA, 2011. IEEE Computer Society.
+          </li>
+          <li>[4] <b>Sung-Wook Park, Jung-Han Kim, Eun-Hee Kim, and Jun-Ho Oh</b>. Development of a multi-agent system
+            for robot soccer game. In Robotics and Automation, 1997. Proceedings., 1997 IEEE International Conference
+            on, volume 1, pages 626-631 vol.1, apr 1997.</li>
+          <li>[5] <b>Henric Fransson</b>. Agentchess - an agent chess approach, 2003.</li>
+          <li>[6] <b>Fredrik Haard</b>. Multi-agent diplomacy, 2004.</li>
+          <li>[7] <b>Fredrik Olsson</b>. A multi-agent system for playing the board game risk, 2005.</li>
+          <li>[8] <b>Johan Hagelbäck and Stefan J. Johansson</b>. Using multi-agent potential fields in real-time
+            strategy games. In Proceedings of the 7th international joint conference on Autonomous agents and multiagent
+            systems - Volume 2, AAMAS '08, pages 631-638, Richland, SC, 2008. International Foundation for Autonomous
+            Agents and Multiagent Systems.</li>
+          <li>[9] <b>Antonio Barella, Carlos Carrascosa, and Vicente Botti</b>. Jgomas: game-oriented multi-agent system
+            based on jade. In Proceedings of the 2006 ACM SIGCHI international conference on Advances in computer
+            entertainment technology, ACE '06, New York, NY, USA, 2006. ACM.</li>
+          <li>[10] <b>Chek Tien Tan and Ho-lun Cheng</b>. A combined tactical and strategic hierarchical learning
+            framework in multi-agent games. In Proceedings of the 2008 ACM SIGGRAPH symposium on Video games, Sandbox
+            '08, pages 115-122, New York, NY, USA, 2008. ACM.</li>
+          <li>[11] <b>H. Fujita, Y. Matsuno, and S. Ishii</b>. A reinforcement learning scheme for a multi-agent card
+            game. In Systems, Man and Cybernetics, 2003. IEEE International Conference on, volume 5, pages 4071-4078
+            vol.5, oct. 2003.</li>
+          <li>[12] <b>R. Neves, L.P. Reis, P. Abreu, and B.M. Faria</b>. A multi-agent system to help farmville players
+            on game management tasks. In Information Systems and Technologies (CISTI), 2012 7th Iberian Conference on,
+            pages 1-6, june 2012.</li>
+          <li>[13] <b>David M. Bourg and Glenn Seeman</b>. Al for game developers. O'Reilly, 2004.</li>
+          <li>[14] <b>Ian Millington and John Funge</b>. Artificial intelligence for games. Morgan Kaufmann Publishers
+            Inc., San Francisco, CA, USA, 2nd edition, 2009.</li>
+          <li>[15] <b>David Vickrey and Daphne Koller</b>. Multi-agent algorithms for solving graphical games. In
+            Eighteenth national conference on Artificial intelligence, pages 345-351, Menlo Park, CA, USA, 2002.
+            American Association for Artificial Intelligence.</li>
+          <li>[16] <b>Zhisheng Huang, Anton Eliëns, and Cees Visser</b>. 3d agent-based virtual communities. In
+            Proceedings of the seventh international conference on 3D Web technology, Web3D '02, pages 137-143, New
+            York, NY, USA, 2002. ACM.</li>
+          <li>[17] <b>Tingting Wang and Jiming Liu</b>. Evaluating the minority game strategy in agent role assignments.
+            In Proceedings of the fourth international joint conference on Autonomous agents and multiagent systems,
+            AAMAS '05, pages 1347-1348, New York, NY, USA, 2005. ACM.</li>
+          <li>[18] <b>P. J. 't Hoen, S. M. Bohte, and J. A. La Poutré</b>. Learning from induced changes in opponent
+            (re)actions in multi-agent games. In Proceedings of the fifth international joint conference on Autonomous
+            agents and multiagent systems, AAMAS '06, pages 728-735, New York, NY, USA, 2006. ACM.</li>
+          <li>[19] <b>Z. Kobti and S. Sharma</b>. A multi-agent architecture for game playing. In Computational
+            Intelligence and Games, 2007. CIG 2007. IEEE Symposium on, pages 276-281, april 2007.</li>
+          <li>[20] <b>Eric Raboin, Ugur Kuter, and Dana Nau</b>. Generating strategies for multi-agent pursuit-evasion
+            games in partially observable euclidean space. In Proceedings of the 11th International Conference on
+            Autonomous Agents and Multiagent Systems - Volume 3, AAMAS '12, pages 1201-1202, Richland, SC, 2012.
+            International Foundation for Autonomous Agents and Multiagent Systems.</li>
+          <li>[21] <b>Italia Telecom</b>. Jade java agent development framework. Disponível em http://jade.tilab.com/,
+            2011.</li>
+          <li>[22] <b>Rafael H. Bordini, Jomi F. Hübner, and Michael Wooldridge</b>. Programming Multi-Agent Systems in
+            AgentSpeak using Jason (Wiley Series in Agent Technology). John Wiley & Sons, 2007.</li>
+          <li>[23] <b>Yves Demazeau</b>. From interactions to collective behaviour in agent-based systems. In In:
+            Proceedings of the Ist. European Conference on Cognitive Science. Saint-Malo, pages 117-132, 1995.</li>
+          <li>[24] <b>Michael Wooldridge</b>. An Introduction to MultiAgent Systems. Wiley, 2nd edition, July 2009.</li>
+          <li>[25] <b>A. Ricci, M. Viroli, and A. Omicini</b>. CArtAgO: An infrastructure for engineering computational
+            environments in MAS. In Danny Weyns, H. Van Dyke Parunak, and Fabien Michel, editors, 3rd International
+            Workshop "Environments for Multi-Agent Systems" (E4MAS 2006), pages 102-119, AAMAS 2006, Hakodate, Japan,
+            2006.</li>
+          <li>[26] <b>A. Ricci, M. Piunti, M. Viroli, and A. Omicini</b>. Environment programming in cartago. In
+            Multi-Agent Programming II: Languages, Platforms and Applications, Multiagent Systems, Artificial Societies,
+            and Simulated Organizations. Springer, 2009.</li>
+          <li>[27] <b>F. Gers</b>. Multi-agent system for distributed data fusion in peer-to-peer environment. PhD
+            thesis, University of Jyväskylä, 2002.</li>
+          <li>[28] <b>M. Hannoun, O. Boissier, J. S. Sichman, and C. Sayettat</b>. Moise: Un modèle organisationnel pour
+            la conception de systèmes multi-agents. In Acts des 7èmes Journèes Francophones Intelligence Artificielle
+            Distribuee & Systèmes Multi-Agents, pages 105-118. Hermès Science Publications, 1999.</li>
+          <li>[29] <b>Jomi Fred Hubner</b>. Um Modelo de Reorganização de Sistemas Multiagentes. PhD thesis, Escola
+            Politécnica da Universidade de São Paulo, 2003.</li>
+          <li>[30] <b>D. B. Bromley</b>. Reputation, Image and Impression Management. John Wiley & Sons, April 1993.
+          </li>
+          <li>[31] <b>E.H. Shortliffe</b>. Computer-based medical consultations: MYCIN, volume 388. Elsevier New York,
+            1976.</li>
+          <li>[32] <b>B. G. Buchanan and E. H. Shortliffe</b>. Rule Based Expert Systems: The Mycin Experiments of the
+            Stanford Heuristic Programming Project. Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA, 1984.
+          </li>
+          <li>[33] <b>P. Jackson</b>. Introduction to Expert Systems. Addison-Wesley Longman Publishing Co., Inc.,
+            Boston, MA, USA, 3rd edition, 1998.</li>
+          <li>[34] <b>Ernest Friedman-Hill</b>. Jess, the rule engine for the java platform. Disponível em
+            http://www.jessrules.com/, 2011.</li>
+          <li>[35] <b>Rudi Studer, V. Richard Benjamins, and Dieter Fensel</b>. Knowledge engineering: Principles and
+            methods. Data and Knowledge Engineering, 25(1-2):161-197, March 1998.</li>
+          <li>[36] <b>Stanford Center For Biomedical Informatics Research</b>. Protégé. Disponível em
+            http://protege.stanford.edu/, 2011.</li>
+          <li>[37] <b>Information Systems Group</b>. Hermit owl reasoner. Disponível em http://hermit-reasoner.com/,
+            2011.</li>
+          <li>[38] <b>Jomi F. Hübner, Rafael H. Bordini, and Michael Wooldridge</b>. Programming declarative goals using
+            plan patterns. In Proceedings of the 4th international conference on Declarative Agent Languages and
+            Technologies, DALT'06, pages 123-140, Berlin, Heidelberg, 2006. Springer-Verlag.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll(".tab-content");
+      tabs.forEach((tab) => {
+        tab.classList.remove("active");
       });
-    </script>
-  </body>
+
+      const navItems = document.querySelectorAll(".nav-item");
+      navItems.forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      document.getElementById(tabId).classList.add("active");
+
+      document
+        .querySelector(`[onclick="showTab('${tabId}')"]`)
+        .classList.add("active");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      showTab("intro");
+    });
+  </script>
+</body>
+
 </html>
