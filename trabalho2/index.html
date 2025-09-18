@@ -104,7 +104,7 @@
       letter-spacing: 1px;
     }
 
-     .content h3 {
+    .content h3 {
       font-family: "Orbitron", sans-serif;
       color: #5ab93d;
       border-bottom: 2px solid #5a5a7f;
@@ -195,37 +195,57 @@
           estratégia simulado, seguindo uma abordagem em três etapas principais:</p>
 
         <h3>1. Modelagem do Ambiente</h2>
-        <ul>
-          <li><strong>CArtAgO</strong>: utilizado para criar o ambiente do jogo, com artefatos que oferecem operações
-            como <em>join</em>, <em>goTo</em>, <em>extractResource</em> e <em>attackAgent</em>.</li>
-          <li><strong>Ontologia (Protégé + Hermit)</strong>: definição de conceitos e papéis (ex.: capitão, soldado,
-            etc.), permitindo raciocínio sobre restrições e relações.</li>
-          <li><strong>Organização MOISE</strong>: estrutura funcional e normativa (grupos, papéis, metas e missões) para
-            guiar o comportamento coletivo.</li>
-        </ul>
+          <ul>
+            <li><strong>CArtAgO</strong>: utilizado para criar o ambiente do jogo, com artefatos que oferecem operações
+              como <em>join</em>, <em>goTo</em>, <em>extractResource</em> e <em>attackAgent</em>.</li>
+            <li><strong>Ontologia (Protégé + Hermit)</strong>: definição de conceitos e papéis (ex.: capitão, soldado,
+              etc.), permitindo raciocínio sobre restrições e relações.
+              <img src="img/ontologia.png" alt="Representação da classe Equipamente Ontologia"
+                style="margin-top:15px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.5);">
+            </li>
 
-        <h3>2. Modelagem dos Agentes</h2>
-        <ul>
-          <li><strong>JADE</strong>: implementação de agentes reativos responsáveis por tarefas básicas.</li>
-          <li><strong>Jason</strong>: implementação de agentes BDI (crenças, desejos e intenções) para tomada de decisão
-            estratégica.</li>
-          <li><strong>Comunicação</strong>: uso de mensagens (FIPA-ACL no JADE e KQML no Jason) e <em>Blackboard</em>
-            para compartilhamento global de informações.</li>
-          <li><strong>Negociação entre Capitães</strong>: protocolo dividido em quatro fases (Início, Inventário,
-            Definição, Ataque) para coordenar estratégias de combate.</li>
-          <li><strong>Sistema de Reputação</strong>: avaliação de confiabilidade dos parceiros com base em interações
-            anteriores (pontuação +1 ou -1).</li>
-        </ul>
+            <li><strong>Organização MOISE</strong>: estrutura funcional e normativa (grupos, papéis, metas e missões)
+              para
+              guiar o comportamento coletivo.</li>
+          </ul>
 
-        <h3>3. Apoio à Tomada de Decisão</h2>
-        <ul>
-          <li><strong>Sistemas Especialistas (Jess)</strong>: motor de regras para auxiliar capitães a decidir iniciar
-            ataques, considerando fatores como diferença de unidades.</li>
-          <li><strong>Interface Gráfica</strong>: visualização do jogo (times, campos de visão, tiros e poços) e
-            controle de desempenho com múltiplas threads.</li>
-          <li><strong>Otimizações de Integração</strong>: redução do número de mensagens, uso de artefatos únicos no
-            ambiente e integração JADE ↔ CArtAgO.</li>
-        </ul>
+          <h3>2. Modelagem dos Agentes</h2>
+            <ul>
+              <li><strong>JADE</strong>: implementação de agentes reativos responsáveis por tarefas básicas.</li>
+              <li><strong>Jason</strong>: implementação de agentes BDI (crenças, desejos e intenções) para tomada de
+                decisão
+                estratégica.</li>
+              <li><strong>Comunicação</strong>: uso de mensagens (FIPA-ACL no JADE e KQML no Jason) e
+                <em>Blackboard</em>
+                para compartilhamento global de informações.
+              </li>
+              <li><strong>Negociação entre Capitães</strong>: protocolo dividido em quatro fases (Início, Inventário,
+                Definição, Ataque) para coordenar estratégias de combate.</li>
+              <li><strong>Sistema de Reputação</strong>: avaliação de confiabilidade dos parceiros com base em
+                interações
+                anteriores (pontuação +1 ou -1).</li>
+              <li><strong>Campo de visão</strong>: método usado pelos agentes para perceber os elementos
+                do ambiente dentro de uma certa distância de onde ele está.</li>
+            </ul>
+
+            <h3>3. Apoio à Tomada de Decisão</h2>
+              <ul>
+                <li><strong>Sistemas Especialistas (Jess)</strong>: motor de regras para auxiliar capitães a decidir
+                  iniciar
+                  ataques, considerando fatores como diferença de unidades.
+                  <img src="img/Se.jpg" alt="Representação de Se"
+                    style="margin-top:15px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.5);width:50%">
+                </li>
+                <li><strong>Interface Gráfica</strong>: visualização do jogo (times, campos de visão, tiros e poços) e
+                  controle de desempenho com múltiplas threads.
+                  <img src="img/jogo2.png" alt="Representação do campo de visão"
+                    style="margin-top:15px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.5);width:50%">
+                </li>
+
+                <li><strong>Otimizações de Integração</strong>: redução do número de mensagens, uso de artefatos únicos
+                  no
+                  ambiente e integração JADE ↔ CArtAgO.</li>
+              </ul>
       </div>
 
       <div id="glossario" class="tab-content">
@@ -241,13 +261,13 @@
             ambiente sem manter um modelo interno complexo.
           </li>
           <li>
-            <strong>Agente BDI:</strong> Arquitetura de agente que modela o
+            <strong>Agente BDI (Belief-Desire-Intention):</strong> Arquitetura de agente que modela o
             comportamento com base em suas crenças sobre o ambiente, seus
             desejos (estados a serem alcançados) e suas intenções (planos para
             atingir desejos).
           </li>
           <li>
-            <strong>JADE:</strong> Plataforma para desenvolvimento de agentes
+            <strong>JADE (Java Agent Development Framework):</strong> Plataforma para desenvolvimento de agentes
             em Java, focada em comunicação.
           </li>
           <li>
@@ -282,57 +302,66 @@
         </ul>
       </div>
 
-<div id="resultados" class="tab-content">
-  <h2>Resultados</h2>
+      <div id="resultados" class="tab-content">
+        <h2>Resultados</h2>
 
-  <h3>Principais Achados</h3>
-  <ul class="discussion-list">
-    <li><b>Comportamento Realista</b>: o jogo Titan aproximou as ações dos agentes ao comportamento de um jogador humano.</li>
-    <li><b>Estratégias Diferenciadas</b>: cada time utilizou Sistemas Especialistas próprios, resultando em decisões distintas e maior interesse no jogo.</li>
-    <li><b>Ambiente CArtAgO</b>: facilitou a separação entre agentes e demais objetos do sistema.</li>
-    <li><b>Jason</b>: mostrou-se adequado para agentes BDI e tomada de decisão estratégica.</li>
-    <li><b>JADE</b>: útil para comunicação, mas com limitações em relação à arquitetura BDI.</li>
-    <li><b>Moise</b>: eficiente na organização e controle de agentes, apesar de restrições.</li>
-    <li><b>Ontologia + Hermit</b>: permitiu verificar papéis disponíveis e unidades em tempo de execução.</li>
-    <li><b>Sistema de Reputação</b>: reduziu o número de mensagens trocadas, tornando negociações mais rápidas e eficientes.</li>
-  </ul>
+        <h3>Principais Achados</h3>
+        <ul class="discussion-list">
+          <li><b>Comportamento Realista</b>: o jogo Titan aproximou as ações dos agentes ao comportamento de um jogador
+            humano.</li>
+          <li><b>Estratégias Diferenciadas</b>: cada time utilizou Sistemas Especialistas próprios, resultando em
+            decisões distintas e maior interesse no jogo.</li>
+          <li><b>Ambiente CArtAgO</b>: facilitou a separação entre agentes e demais objetos do sistema.</li>
+          <li><b>Jason</b>: mostrou-se adequado para agentes BDI e tomada de decisão estratégica.</li>
+          <li><b>JADE</b>: útil para comunicação, mas com limitações em relação à arquitetura BDI.</li>
+          <li><b>Moise</b>: eficiente na organização e controle de agentes, apesar de restrições.</li>
+          <li><b>Ontologia + Hermit</b>: permitiu verificar papéis disponíveis e unidades em tempo de execução.</li>
+          <li><b>Sistema de Reputação</b>: reduziu o número de mensagens trocadas, tornando negociações mais rápidas e
+            eficientes.</li>
+        </ul>
 
-  <h3>Impacto Geral</h3>
-  <p>
-    As técnicas de Inteligência Artificial aplicadas tornaram o jogo mais crível, com negociações e ataques mais realistas.  
-    A combinação de diferentes ferramentas (Jason, JADE, Moise, CArtAgO e Ontologias) mostrou-se eficaz para desenvolver um sistema multiagente de estratégia.
-  </p>
+        <h3>Impacto Geral</h3>
+        <p>
+          As técnicas de Inteligência Artificial aplicadas tornaram o jogo mais crível, com negociações e ataques mais
+          realistas.
+          A combinação de diferentes ferramentas (Jason, JADE, Moise, CArtAgO e Ontologias) mostrou-se eficaz para
+          desenvolver um sistema multiagente de estratégia.
+        </p>
 
-  <img src="img/jogo.png" alt="Representação do jogo Titan" style="margin-top:15px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.5);" />
-</div>
+        <img src="img/jogo.png" alt="Representação do jogo Titan"
+          style="margin-top:15px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.5);" />
+      </div>
 
 
 
       <div id="discussao" class="tab-content">
-  <h2>Discussão</h2>
+        <h2>Discussão</h2>
 
-  <h3>Desafios Encontrados</h3>
-  <ul class="discussion-list">
-    <li><b>Lentidão no CArtAgO</b>: causada por múltiplos agentes → resolvida com otimização da interface gráfica e ajustes na ferramenta.</li>
-    <li><b>Integração JADE ↔ CArtAgO</b>: exigiu a criação de uma representação do agente JADE no ambiente.</li>
-    <li><b>Limitações de Concorrência no JADE</b>: solução encontrada foi reduzir o número de mensagens trocadas.</li>
-    <li><b>Moise</b>: dificuldade em remover agentes de missões obrigatórias → solução: permitir número indefinido de agentes nos papéis.</li>
-  </ul>
+        <h3>Desafios Encontrados</h3>
+        <ul class="discussion-list">
+          <li><b>Lentidão no CArtAgO</b>: causada por múltiplos agentes → resolvida com otimização da interface gráfica
+            e ajustes na ferramenta.</li>
+          <li><b>Integração JADE ↔ CArtAgO</b>: exigiu a criação de uma representação do agente JADE no ambiente.</li>
+          <li><b>Limitações de Concorrência no JADE</b>: solução encontrada foi reduzir o número de mensagens trocadas.
+          </li>
+          <li><b>Moise</b>: dificuldade em remover agentes de missões obrigatórias → solução: permitir número indefinido
+            de agentes nos papéis.</li>
+        </ul>
 
-  <h3>Contribuições para as Ferramentas</h3>
-  <ul class="discussion-list">
-    <li>Correção de problema na lista de eventos pendentes do <b>CArtAgO</b>.</li>
-    <li>Sugestão de <i>metas do tipo maintenance</i> para o <b>Moise</b>.</li>
-  </ul>
+        <h3>Contribuições para as Ferramentas</h3>
+        <ul class="discussion-list">
+          <li>Correção de problema na lista de eventos pendentes do <b>CArtAgO</b>.</li>
+          <li>Sugestão de <i>metas do tipo maintenance</i> para o <b>Moise</b>.</li>
+        </ul>
 
-  <h3>Trabalhos Futuros</h3>
-  <ul class="discussion-list">
-    <li>Inserir novos recursos no jogo.</li>
-    <li>Avaliar desempenho e escalabilidade → incluindo execução distribuída.</li>
-    <li>Desenvolver novos tipos de agentes e artefatos.</li>
-    <li>Permitir interação humana controlando um dos times.</li>
-  </ul>
-</div>
+        <h3>Trabalhos Futuros</h3>
+        <ul class="discussion-list">
+          <li>Inserir novos recursos no jogo.</li>
+          <li>Avaliar desempenho e escalabilidade → incluindo execução distribuída.</li>
+          <li>Desenvolver novos tipos de agentes e artefatos.</li>
+          <li>Permitir interação humana controlando um dos times.</li>
+        </ul>
+      </div>
 
 
 
